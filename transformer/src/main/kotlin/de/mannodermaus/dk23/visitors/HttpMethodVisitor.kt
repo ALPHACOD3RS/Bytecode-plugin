@@ -99,7 +99,6 @@ internal class ApiServiceMethodVisitor(
         descriptor: String?,
         isInterface: Boolean
     ) {
-        // Intercept calls to setRequestProperty on HttpURLConnection
         if (opcode == Opcodes.INVOKEVIRTUAL
             && owner == "java/net/HttpURLConnection"
             && name == "setRequestProperty"
@@ -118,7 +117,6 @@ internal class ApiServiceMethodVisitor(
             visitLdcInsn("siu")
         }
 
-        // Continue with the original instruction
         super.visitMethodInsn(opcode, owner, name, descriptor, isInterface)
     }
 }
